@@ -29,16 +29,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void findbyid(int id) {
-      try{  for (User u:
+        int i = 0;
+        for (User u :
                 userDao.getUsers()) {
-            if(id==u.getId()){
+            if (id == u.getId()) {
                 System.out.println(u);
             }
-        }
-        throw new RnEx();
-      }catch (RnEx ignored){
+            else{i++;}
 
-      }
+        }
+        if(i==userDao.getUsers().size()){
+            try{throw new RnEx();}catch (RnEx rnEx){
+                System.out.println("----");
+            }
+        }
     }
 
     @Override
